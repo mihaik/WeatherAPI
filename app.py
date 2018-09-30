@@ -33,9 +33,11 @@ def lookup(zip):
 
         for i in y['weather']:
             print('Cloud coverage: ' + i['description'])
+            
     except ValueError:
         # This doesn't quite work as it returns a 404 error instead of a value error
         print('City does not exist')
+        #return 'City does not exist'
         quit()
 
 
