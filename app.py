@@ -13,7 +13,7 @@ def lookup(zip):
     http://api.openweathermap.org/data/2.5/weather?q=14522,us&&APPID=9b2c7c7f226d3ca9f0b2e55b07f0df22&units=imperial
     '''
     api_key = '&&APPID=9b2c7c7f226d3ca9f0b2e55b07f0df22'
-    url = 'http://api.openweathermap.org/data/2.5/weather?q='
+    url = 'http://api.openweathermap.org/data/2.5/weather?zip='
     units = '&units=imperial'
     country = 'us'
     finalURL = url + zip + ',' + country + api_key + units
@@ -25,15 +25,22 @@ def lookup(zip):
     y = jsonResponse  # This just makes it easier to use/type
 
     try:
+        x = []
         # This starts parsing the json file and returning the output
-        print('The city of ' + y['name'] + ', ' + country)
+        #print('The city of ' + y['name'] + ', ' + country)
+        x.append(y['name'])
+        #print(x)
         print('Temp: ' + str(y['main']['temp']))
+        x.append(str(y['main']['temp']))
+
+        return x
+        '''
         print('Humidity: ' + str(y['main']['humidity']))
         print('Wind Speed: ' + str(y['wind']['speed']) + ' mph')
 
         for i in y['weather']:
             print('Cloud coverage: ' + i['description'])
-            
+           ''' 
     except ValueError:
         # This doesn't quite work as it returns a 404 error instead of a value error
         print('City does not exist')
@@ -41,6 +48,6 @@ def lookup(zip):
         quit()
 
 
-zip = input('Enter zip. ')
+# = input('Enter zip. ')
 
-lookup(zip)
+#lookup(zip)
