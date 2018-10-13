@@ -1,4 +1,6 @@
+
 from flask import Flask, render_template, request
+from app import lookup
 
 app = Flask(__name__)
 
@@ -10,9 +12,15 @@ def index():
 def result():
     if request.method == 'POST':
         zip = int(request.form['zip_code'])
+        zip = lookup(zip)
+        print(zip)
+
         output = zip
+        print(output)
+
     return render_template("result.html", variable=output)
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.debug = True
+app.run()
